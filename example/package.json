@@ -1,0 +1,27 @@
+{
+  "name": "react-native-transcribe-example",
+  "description": "Example app for react-native-transcribe",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "android": "react-native run-android",
+    "ios": "react-native run-ios",
+    "start": "react-native start"
+  },
+  "dependencies": {
+    "@aws-sdk/eventstream-marshaller": "0.1.0-preview.2",
+    "@aws-sdk/util-utf8-node": "0.1.0-preview.1",
+    "axios": "0.19.2",
+    "babel-plugin-dotenv-import": "2.1.0",
+    "buffer": "5.6.0",
+    "react": "16.11.0",
+    "react-native": "0.62.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.9.6",
+    "@babel/runtime": "7.9.6",
+    "@types/node": "14.0.13",
+    "babel-plugin-module-resolver": "4.0.0",
+    "metro-react-native-babel-preset": "0.59.0"
+  }
+}
