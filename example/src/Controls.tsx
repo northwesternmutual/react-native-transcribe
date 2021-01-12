@@ -10,7 +10,6 @@ import {
 
 import {
   RCTTranscribe,
-  // ResultsEvent,
   BooleanEvent,
   // @ts-ignore
 } from 'react-native-transcribe';
@@ -168,16 +167,6 @@ const Controls = () => {
         style={styles.flagText}
       >{`isPartial: ${transcriptionData.isPartial}`}</Text>
 
-      {/* <View style={styles.button}>
-        <Button onPress={_startTranscribe} title="Start Transcription ✅" />
-      </View>
-      <View style={styles.button}>
-        <Button onPress={_stopTranscribe} title="Stop Transcription 🛑" />
-      </View>
-      <View style={styles.button}>
-        <Button onPress={_clear} title="Clear 🗑" />
-      </View> */}
-
       <TouchableOpacity style={styles.button} onPress={_startTranscribe}>
         <Text>Start Transcription ✅</Text>
       </TouchableOpacity>
@@ -188,26 +177,12 @@ const Controls = () => {
         <Text>Clear 🗑</Text>
       </TouchableOpacity>
 
-      {/* <View style={styles.flexButtons}>
-        <View style={styles.button}>
-          <Button onPress={setViewFinal(true)} title="Final Transcription" />
-        </View>
-        <View style={styles.button}>
-          <Button title="Button 2" />
-        </View>
-      </View> */}
       <TouchableOpacity style={styles.labelButton} onPress={_toogleViewType}>
         <Text>
           {viewFinal ? `Final Transcription ✒️` : `Partial Transcription ✏️`}
-          {/* {viewFinal
-            ? `Switch to Partial Transcription ✏️`
-            : `Switch to Final Transcription ✒️`} */}
         </Text>
       </TouchableOpacity>
 
-      {/* <Text style={styles.title}>
-        {viewFinal ? `Final Transcription ` : `Partial Transcription`}
-      </Text> */}
       <ScrollView>{transcriptionView()}</ScrollView>
     </View>
   );
@@ -218,9 +193,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 15,
     marginTop: 42,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // backgroundColor: '#F5FCFF',
   },
   title: {
     fontSize: 20,

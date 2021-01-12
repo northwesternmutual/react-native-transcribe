@@ -26,7 +26,7 @@ See the [contributing guide](CONTRIBUTING.md) to learn how to contribute to the 
 
 MIT
 
-Get started with the project:
+## Get started with the project:
 
 \$ yarn bootstrap
 
@@ -68,30 +68,62 @@ npm install
 
 **Running ios**
 
-Move to the `example/ios` folder and instal cocoa pods
-```sh
+1) Install cocoa pods
+```
 cd /react-native-transcribe/example/ios
 pod install
 ```
-Change directory and execute
-```sh
+
+2) Start react-native example project
+```
 cd /react-native-transcribe/example
 npm run start
 ```
-Open the `TranscribeExample.xcworkspace` file from `../example/ios` in XCode and build
+
+3) Start ios Project.  
+Open the `TranscribeExample.xcworkspace` file from `../example/ios` in XCode Click Build and Run
 
 **Running Android**
-
-* [ ] ensure your `emulator` command works properly 
-* [ ] open emulator with this: 
-```sh
-emulator -avd [EMULATOR_NAME] -qemu -allow-host-audio
+1) Start react-native example project
 ```
-* example: `emulator -avd Pixel_3a_API_30_x86 -qemu -allow-host-audio`
-* [ ] toggle `adb emu avd hostmicon` once an AVD is open in Terminal
-* Possibly use the simulator's extended menu (`...`) to allow headset microphones
+cd /react-native-transcribe/example
+npm run start
+```
+2) Ensure your `emulator` command works properly. https://developer.android.com/studio/run/emulator-commandline
+3) Open Android emulator from the Terminal with the emulator command: 
+```sh
+user@host ~ $ emulator -list-avds
+Pixel_2_API_28
+Pixel_3a_API_30_x86
 
-1. Open Android simulator using the steps listed above
-1. In Android Studio, open project and naviagate to `/react-native-transcribe/example/android` 
-1. Select that folder and build
+#emulator -avd [EMULATOR_NAME] -qemu -allow-host-audio
 
+user@host ~ $ emulator -avd Pixel_3a_API_30_x86 -qemu -allow-host-audio
+```
+
+4) Toggle (in a different terminal) the microphone ON 
+```
+#adb emu avd hostmicon
+user@host ~ $ adb emu avd hostmicon 
+OK
+```
+** You can also use the simulator's extended menu (`...`) to allow headset microphones **
+
+5) In Android Studio, open project and naviagate to `/react-native-transcribe/example/android` 
+6) Build
+
+### Troubleshooting Android:
+
+If you try to start your emulator and you receive this in the terminal: 
+
+```
+audio: Failed to create voice `dac'
+coreaudio: Could not initialize record
+coreaudio: Could not set samplerate 44100
+coreaudio: Reason: kAudioDeviceUnsupportedFormatError
+coreaudio: Could not initialize record
+coreaudio: Could not set samplerate 44100
+coreaudio: Reason: kAudioDeviceUnsupportedFormatError
+```
+
+Mac: Make sure your audio is set to your system default (`MacBook Pro Speakers` and `MacBook Pro Microphone`)

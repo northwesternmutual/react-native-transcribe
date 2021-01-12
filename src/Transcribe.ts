@@ -60,7 +60,6 @@ export class RCTTranscribe {
   }
 
   set onResults(fn: (arrayBuffer: ArrayBuffer) => void) {
-    console.log('result');
     // Convert Float32 Array to Int16 ArrayBuffer
     const pcmEncode = (input: Float32Array) => {
       let offset = 0;
