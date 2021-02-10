@@ -19,7 +19,7 @@ import TranscribeSocket from '../util/TranscribeSocket';
 const transcribeSocket = new TranscribeSocket();
 
 const Controls = () => {
-  const [isRecording, setIsRecording] = useState<boolean>(false);
+  const [isRecording, setIsRecording] = useState<boolean | undefined>(false);
   const [isTranscribeSocketOpen, setIsTranscribeSocketOpen] = useState<boolean>(
     false
   );
@@ -57,13 +57,7 @@ const Controls = () => {
 
   function isRecordingHandler(e: BooleanEvent) {
     console.log('isRecordingHandler: ', e);
-    let bStart = false;
-    if (!e || !e.value) {
-      bStart = false;
-    } else {
-      bStart = e.value;
-    }
-    setIsRecording(bStart);
+    setIsRecording(e.value);
   }
 
   useEffect(() => {

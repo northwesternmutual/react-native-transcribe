@@ -5,9 +5,8 @@ import Foundation
 public final class Transcribe: RCTEventEmitter {
     var hasListeners: Bool = false
     var isRecording: Bool = false
-    static let sharedInstance: Transcribe = Transcribe()
-    var audioController: TranscribeAudioController = TranscribeAudioController(sampleRate: 44100, bufferSize: 1024)
-    
+    var activeAudioController: TranscribeAudioController?
+
     // Override implementation of queue setup
     // - Returns: when true class initialized on the main thread,
     //            when false class initialized on a background thread
@@ -35,21 +34,8 @@ public final class Transcribe: RCTEventEmitter {
         super.init()
         
         print("Transcribe init")
-        
-        do {
-            try audioController.session.setCategory(AVAudioSession.Category.playAndRecord)
-            audioController.session.requestRecordPermission { (success) in
-                if success {
-                    print("Permission Granted")
-                } else {
-                    print("Permission Denied")
-                }
-            }
-        }    catch    {
-            print("Audio session not loaded properly \(error)")
-        }
     }
-    
+
     @objc(start:withRejecter:)
     func start(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) {
         print("start")
@@ -60,19 +46,39 @@ public final class Transcribe: RCTEventEmitter {
         self.sendEvent(withName: "isRecording", body: ["value": isRecording] )
         resolve( isRecording )
     }
-    
-    @objc(stop:withRejecter:)
-    func stop(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) {
+
+    @objc(stop)
+    func stop() {
         print("stop")
         removeTap()
         isRecording = false
         self.sendEvent(withName: "isRecording", body: ["value": isRecording] )
-        resolve( isRecording )
     }
     
     func installTap() {
         print("installTap - START")
-        
+
+        self.activeAudioController = TranscribeAudioController(sampleRate: 8000, bufferSize: 1024)
+        guard let audioController = self.activeAudioController else {
+            return
+        }
+        do {
+            try audioController.session.setCategory(AVAudioSession.Category.playAndRecord)
+            audioController.session.requestRecordPermission { (success) in
+                if success {
+                    print("Permission Granted")
+                } else {
+                    print("Permission Denied")
+                    self.activeAudioController = nil
+                    return
+                }
+            }
+        } catch {
+            print("Audio session not loaded properly \(error)")
+            self.activeAudioController = nil
+            return
+        }
+
         do {
             try audioController.session.setActive(true)
         }catch{
@@ -90,8 +96,8 @@ public final class Transcribe: RCTEventEmitter {
         
         let sampleRate = audioController.session.sampleRate
         print("hardware sample rate = \(sampleRate), using specified rate = \(format.sampleRate)")
-        
-        let converterFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(44100), channels: 1, interleaved: false)!
+
+        let converterFormat = AVAudioFormat(commonFormat: .pcmFormatFloat32, sampleRate: Double(8000), channels: 1, interleaved: false)!
         guard let converter = AVAudioConverter(from: format, to: converterFormat) else {
             print("can not make audio converter")
             return
@@ -128,12 +134,13 @@ public final class Transcribe: RCTEventEmitter {
     
     func removeTap() {
         print("removeTap - START")
-        audioController.input.removeTap(onBus: 0)
+        activeAudioController?.input.removeTap(onBus: 0)
         do {
-            try audioController.session.setActive(false)
-        }catch{
+            try activeAudioController?.session.setActive(false)
+        } catch {
             print("error setting active false \(error)")
         }
+        self.activeAudioController = nil
         print("removeTap - DONE")
     }
 }

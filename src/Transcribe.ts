@@ -47,8 +47,8 @@ export class RCTTranscribe {
     return this._transcribe.start();
   }
 
-  stop(): Promise<boolean> {
-    return this._transcribe.stop();
+  stop() {
+    this._transcribe.stop();
   }
 
   set onError(fn: (e: ErrorEvent) => void) {
@@ -78,7 +78,6 @@ export class RCTTranscribe {
         const pcm = pcmEncode(buf);
         fn(pcm);
       } else {
-        // TODO VERIFY JAVA
         fn(event.buffer);
       }
     };

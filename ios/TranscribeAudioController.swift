@@ -45,7 +45,7 @@ class TranscribeAudioController{
     }
     
     func configureAudioSession() {
-        configureAudioSession(44100, AVAudioFrameCount(1024))
+        configureAudioSession(8000, AVAudioFrameCount(1024))
     }
     
     func configureAudioSession(_ sampleRate: Double, _ bufferSize: AVAudioFrameCount) {

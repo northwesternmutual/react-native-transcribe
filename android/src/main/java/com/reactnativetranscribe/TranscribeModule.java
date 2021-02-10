@@ -34,7 +34,7 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
 
   //TODO ADD AS OPTIONS
   int audioSource = MediaRecorder.AudioSource.MIC;
-  int sampleRateInHz = 44100;
+  int sampleRateInHz = 8000;
   int channelConfig = AudioFormat.CHANNEL_IN_MONO;
   int audioFormat = AudioFormat.ENCODING_PCM_16BIT;
   int bufferSize = AudioRecord.getMinBufferSize(sampleRateInHz, channelConfig, audioFormat);
@@ -84,12 +84,11 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
   }
 
   @ReactMethod
-  public void stop(final Promise promise) {
+  public void stop() {
     Log.d(TAG, "stopRecording");
     stopRecording();
 
     recordingThread.interrupt();
-    promise.resolve(true);
   }
 
   @ReactMethod

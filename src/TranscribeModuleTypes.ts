@@ -2,7 +2,7 @@ import type { EventSubscriptionVendor } from 'react-native';
 
 export type TranscribeModule = {
   start: () => Promise<boolean>;
-  stop: () => Promise<boolean>;
+  stop: () => void;
 } & TranscribeEvents &
   EventSubscriptionVendor;
 
