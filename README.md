@@ -48,7 +48,7 @@ AndroidManifest.xml
   <uses-permission android:name="android.permission.RECORD_AUDIO" />
 ```
 
-TODO Special settings for mic on android (adb emu avd hostmicon)
+Note: Special settings for mic on android (adb emu avd hostmicon)
 emulator -avd Pixel_3a_API_30_x86 -qemu -allow-host-audio
 https://developer.android.com/studio/run/emulator-commandline
 https://gist.github.com/wswebcreation/80f5536ab1592aff0c25a9dbd9cc1451

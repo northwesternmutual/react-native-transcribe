@@ -32,7 +32,6 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
   private AudioRecord audioRecord;
   private boolean isRecording;
 
-  //TODO ADD AS OPTIONS
   int audioSource = MediaRecorder.AudioSource.MIC;
   int sampleRateInHz = 8000;
   int channelConfig = AudioFormat.CHANNEL_IN_MONO;
@@ -79,7 +78,7 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
     Log.d(TAG,"isPermissionsGranted");
 
     String permission = Manifest.permission.RECORD_AUDIO;
-    int res = getReactApplicationContext().checkCallingOrSelfPermission(permission);
+    int res = getReactApplicationContext().checkCallingPermission(permission);
     return res == PackageManager.PERMISSION_GRANTED;
   }
 
