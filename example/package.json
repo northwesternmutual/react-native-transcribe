@@ -14,14 +14,14 @@
     "axios": "0.19.2",
     "babel-plugin-dotenv-import": "2.1.0",
     "buffer": "5.6.0",
-    "react": "16.11.0",
-    "react-native": "0.62.2"
+    "react": "16.13.1",
+    "react-native": "0.63.4"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
-    "@babel/runtime": "7.9.6",
+    "@babel/core": "^7.12.10",
+    "@babel/runtime": "^7.12.5",
     "@types/node": "14.0.13",
-    "babel-plugin-module-resolver": "4.0.0",
-    "metro-react-native-babel-preset": "0.59.0"
+    "babel-plugin-module-resolver": "^4.0.0",
+    "metro-react-native-babel-preset": "^0.64.0"
   }
 }
