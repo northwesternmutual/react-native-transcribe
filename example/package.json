@@ -11,9 +11,9 @@
   "dependencies": {
     "@aws-sdk/eventstream-marshaller": "0.1.0-preview.2",
     "@aws-sdk/util-utf8-node": "0.1.0-preview.1",
-    "axios": "0.19.2",
+    "axios": "0.26.1",
     "babel-plugin-dotenv-import": "2.1.0",
-    "buffer": "5.6.0",
+    "buffer": "6.0.3",
     "react": "16.13.1",
     "react-native": "0.63.4"
   },
