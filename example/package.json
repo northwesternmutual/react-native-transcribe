@@ -9,10 +9,10 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "@aws-sdk/eventstream-marshaller": "0.1.0-preview.2",
-    "@aws-sdk/util-utf8-node": "0.1.0-preview.1",
+    "@aws-sdk/eventstream-marshaller": "3.55.0",
+    "@aws-sdk/util-utf8-node": "3.55.0",
     "axios": "0.26.1",
-    "babel-plugin-dotenv-import": "2.1.0",
+    "babel-plugin-dotenv-import": "2.2.0",
     "buffer": "6.0.3",
     "react": "16.13.1",
     "react-native": "0.63.4"
