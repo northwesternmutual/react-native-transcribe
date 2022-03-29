@@ -14,8 +14,8 @@
     "axios": "0.26.1",
     "babel-plugin-dotenv-import": "2.2.0",
     "buffer": "6.0.3",
-    "react": "16.13.1",
-    "react-native": "0.63.4"
+    "react": "17.0.2",
+    "react-native": "0.66.4"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
