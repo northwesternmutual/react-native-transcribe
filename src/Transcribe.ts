@@ -17,8 +17,8 @@ export class RCTTranscribe {
 
   constructor() {
     this._transcribe = NativeModules.Transcribe;
-    this._transcribeEmitter =
-      Platform.OS !== 'web' ? new NativeEventEmitter(this._transcribe) : null;
+    // @ts-ignore
+    this._transcribeEmitter = Platform.OS !== 'web' ? new NativeEventEmitter(this._transcribe) : null;
     this._events = {
       onError: () => null,
       isRecording: () => null,
