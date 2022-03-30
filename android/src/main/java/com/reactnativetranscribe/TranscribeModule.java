@@ -78,7 +78,7 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
     Log.d(TAG,"isPermissionsGranted");
 
     String permission = Manifest.permission.RECORD_AUDIO;
-    int res = getReactApplicationContext().checkCallingPermission(permission);
+    int res = getReactApplicationContext().checkCallingOrSelfPermission(permission);
     return res == PackageManager.PERMISSION_GRANTED;
   }
 
