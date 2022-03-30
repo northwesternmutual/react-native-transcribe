@@ -93,12 +93,11 @@ npm run start
 3) Open Android emulator from the Terminal with the emulator command: 
 ```sh
 user@host ~ $ emulator -list-avds
-Pixel_2_API_28
-Pixel_3a_API_30_x86
+Pixel_4_API_30
 
 #emulator -avd [EMULATOR_NAME] -qemu -allow-host-audio
 
-user@host ~ $ emulator -avd Pixel_3a_API_30_x86 -qemu -allow-host-audio
+user@host ~ $  emulator -avd Pixel_4_API_30 -qemu -allow-host-audio
 ```
 
 4) Toggle (in a different terminal) the microphone ON 
