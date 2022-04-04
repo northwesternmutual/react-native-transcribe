@@ -20,6 +20,9 @@ import com.facebook.react.modules.core.PermissionAwareActivity;
 import com.facebook.react.modules.core.PermissionListener;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import javax.annotation.Nullable;
 
 public class TranscribeModule extends ReactContextBaseJavaModule {
@@ -31,6 +34,8 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
 
   private AudioRecord audioRecord;
   private boolean isRecording;
+
+  private static final int PERMISSION_REQUEST_CODE = 1;
 
   int audioSource = MediaRecorder.AudioSource.MIC;
   int sampleRateInHz = 8000;
@@ -52,11 +57,21 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
   private void init(){
     Log.d(TAG,"init");
 
-    isRecording = false;
-    audioRecord = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSize * 10);
+    if (ContextCompat.checkSelfPermission(this.getCurrentActivity(),Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_DENIED) {
+      Log.d("permission", "permission denied to RECORD_AUDIO - requesting it");
+      String[] permissions = {Manifest.permission.RECORD_AUDIO};
 
-    if (audioRecord.getState() != AudioRecord.STATE_INITIALIZED) {
-      Log.d(TAG, "Unable to initialize AudioRecord");
+      ActivityCompat.requestPermissions(this.getCurrentActivity(), permissions, PERMISSION_REQUEST_CODE);
+
+    } else {
+      // RECORD_AUDIO has been granted
+
+      isRecording = false;
+      audioRecord = new AudioRecord(audioSource, sampleRateInHz, channelConfig, audioFormat, bufferSize * 10);
+
+      if (audioRecord.getState() != AudioRecord.STATE_INITIALIZED) {
+        Log.d(TAG, "Unable to initialize AudioRecord");
+      }
     }
   }
 
@@ -78,7 +93,7 @@ public class TranscribeModule extends ReactContextBaseJavaModule {
     Log.d(TAG,"isPermissionsGranted");
 
     String permission = Manifest.permission.RECORD_AUDIO;
-    int res = getReactApplicationContext().checkCallingPermission(permission);
+    int res = getReactApplicationContext().checkCallingOrSelfPermission(permission);
     return res == PackageManager.PERMISSION_GRANTED;
   }
 

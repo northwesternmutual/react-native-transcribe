@@ -9,19 +9,19 @@
     "start": "react-native start"
   },
   "dependencies": {
-    "@aws-sdk/eventstream-marshaller": "0.1.0-preview.2",
-    "@aws-sdk/util-utf8-node": "0.1.0-preview.1",
-    "axios": "0.19.2",
-    "babel-plugin-dotenv-import": "2.1.0",
-    "buffer": "5.6.0",
-    "react": "16.11.0",
-    "react-native": "0.62.2"
+    "@aws-sdk/eventstream-marshaller": "3.55.0",
+    "@aws-sdk/util-utf8-node": "3.55.0",
+    "axios": "0.26.1",
+    "babel-plugin-dotenv-import": "2.2.0",
+    "buffer": "6.0.3",
+    "react": "17.0.2",
+    "react-native": "0.66.4"
   },
   "devDependencies": {
-    "@babel/core": "7.9.6",
-    "@babel/runtime": "7.9.6",
-    "@types/node": "14.0.13",
-    "babel-plugin-module-resolver": "4.0.0",
-    "metro-react-native-babel-preset": "0.59.0"
+    "@babel/core": "^7.17.8",
+    "@babel/runtime": "^7.17.8",
+    "@types/node": "17.0.23",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "metro-react-native-babel-preset": "^0.70.0"
   }
 }
