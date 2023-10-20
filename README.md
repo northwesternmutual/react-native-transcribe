@@ -4,12 +4,6 @@ library to send raw microphone data (array) for AWS Transcribe
 
 You can use this library to send to any speech to text service, this one includes a sample AWS Lambda function for AWS Transcribe.
 
-## Installation
-
-```sh
-npm install react-native-transcribe
-```
-
 ## Usage
 
 ```js
